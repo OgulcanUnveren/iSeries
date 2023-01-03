@@ -1,5 +1,5 @@
 """
-WSGI config for angelfire project.
+WSGI config for iSeries project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
