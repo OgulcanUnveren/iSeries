@@ -2,4 +2,11 @@
 
 #ToDo: Gonna be dockerized and user interaction will be added
 
+## Mainscreen
 ![mainscreen](./iseries/static/imagges/mainscreen.png)
+## Panel
+![panelfirstlook](./iseries/static/imagges/panelfirstlook.png)
+## Report Serie
+![report](./iseries/static/imagges/report.png)
+## Serie Detail
+![seriedetail](./iseries/static/imagges/seriedetail.png)
