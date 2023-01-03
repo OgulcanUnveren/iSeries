@@ -1,0 +1,15 @@
+{
+  "theme-name"     : "default",
+  "author"         : "Creativeitem",
+  "year"           : "2018",
+  "homepage" : {
+    "homepage_banner_image" : true,
+    "homepage_banner_image_size" : "2000 X 1335"
+  },
+  "serie_media_files" : {
+    "serie_thumbnail" : "600 X 600"
+  },
+  "serie_media_placeholders" : {
+    "serie_thumbnail_placeholder" : "assets/frontend/default/img/serie_thumbnail_placeholder.jpg"
+  }
+}

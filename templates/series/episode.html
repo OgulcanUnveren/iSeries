@@ -1,0 +1,273 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{{ "iSeries" }}|{{serie.title}}|{{first.episode_title}}</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="author" content="th3d1gger" />
+
+
+		<meta name="keywords" content=""/>
+		<meta name="description" content="" />
+
+		<meta name="keywords" content=""/>
+		<meta name="description" content="" />
+
+
+	<link name="favicon" type="image/x-icon" href="" rel="shortcut icon" />
+    <link rel="favicon" href="{% static 'assets/frontend/default/img/icons/favicon.ico' %}">
+    <link rel="apple-touch-icon" href="{% static 'assets/frontend/default/img/icons/icon.png' %}">
+    <link rel="stylesheet" href="{% static 'assets/frontend/default/css/jquery.webui-popover.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/frontend/default/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/frontend/default/css/slick.css' %}>
+    <link rel="stylesheet" href="{% static 'assets/frontend/default/css/slick-theme.css' %}">
+    <!-- font awesome 5 -->
+    <link rel="stylesheet" href="{% static 'assets/frontend/default/css/fontawesome-all.min.css' %}">
+    
+
+    <link rel="stylesheet" href="{% static 'assets/frontend/default/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/frontend/default/css/bootstrap-tagsinput.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/frontend/default/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/frontend/default/css/responsive.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/global/toastr/toastr.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nestable2/1.6.0/jquery.nestable.min.css" />
+    <link rel="stylesheet" href="{% static 'assets/episodes/css/custom.css' %}">
+    <script src="{% static 'assets/backend/js/jquery-3.3.1.min.js' %}"></script>
+    
+
+
+    <!-- Episode page specific styles are here -->
+    <style type="text/css">
+        body {
+            background-color: #fff !important;
+        }
+        .card {
+            border-radius: 0px !important;
+            background-color: #f7f8fa !important;
+            border:0px !important;
+        }
+        .serie_card {
+            padding: 0px;
+            background-color: #F7F8FA;
+        }
+        .serie_container {
+            background-color: #fff !important;
+        }
+        .serie_col {
+            padding: 0px;
+        }
+        .serie_header_col {
+            background-color: #29303b;
+            color: #fff;
+            padding: 15px 10px 10px;
+        }
+        .serie_header_col img {
+            padding: 0px 0px;
+        }
+        .serie_btn {
+            color: #95979a;
+            border: 1px solid #95979a;
+            padding: 7px 10px;
+        }
+        .serie_btn:hover {
+            color: #fff;
+            border:1px solid #fff;
+        }
+        .episode_duration{
+            border-radius: 5px;
+            padding-top: 8px;
+            color: #5C5D61;
+            font-size: 13px;
+            font-weight: 100;
+        }
+        .quiz-card {
+            border: 1px solid #dcdddf !important;
+        }
+        .bg-quiz-result-info {
+            background-color: #007791 !important;
+            padding: 13px !important;
+        }
+    </style>
+    
+</head>
+<body class="gray-bg">
+
+    <div class="container-fluid serie_container">
+    <!-- Top bar -->
+    <div class="row">
+        <div class="col-lg-9 serie_header_col">
+            <h5>
+                <a href="{% url 'index' %}"><img style="width: 100px;display: block !important;" src="{% if topconfs.logo_normal %}{{ topconfs.logo_normal.url}}{% endif%}" alt=""></a> |
+               {{serie.title}} | 
+    </h5>
+    </div>
+    <div class="col-lg-3 serie_header_col">
+        <a href="javascript::" class="serie_btn" onclick="toggle_episode_view()"><i class="fa fa-arrows-alt-h"></i></a>
+        <a href="{% url 'series' %}" class="serie_btn"> <i class="fa fa-chevron-left"></i> Dizilerim</a>
+        <a href="{% url 'seriedetail' serie.slug  %}" class="serie_btn">Dizi Detayları<i class="fa fa-chevron-right"></i></a>
+    </div>
+    </div>
+
+    <div class="row" id = "episode-container">
+        <div class="col-lg-9  order-md-1 serie_col" id = "video_player_area">
+            <link rel="stylesheet" href="https://cdn.plyr.io/1.8.2/plyr.css">
+            <div class="" style="text-align: center;">
+                
+                <div class="plyr__video-embed" id="player" width="640" height="480">
+                    {{ first.episode_shorttext | safe}}
+                  </div>
+                <script src="https://cdn.plyr.io/1.8.2/plyr.js"></script>
+                <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js"></script>      
+            </div>
+            <!-- <script>
+                (function () {
+                    var video = document.querySelector('#player');
+                  
+                    if (Hls.isSupported()) {
+                      var hls = new Hls();
+                      hls.loadSource('first.episode_text}}');
+                      hls.attachMedia(video);
+                      hls.on(Hls.Events.MANIFEST_PARSED,function() {
+                        video.play();
+                      });
+                    }
+                    
+                    plyr.setup(video);
+                  })();
+            </script> -->
+
+            <div class="" onclick="hide()" style="margin: 20px 0;" id = "lesson-summary">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{first.episode_title}}</h5>
+                        
+                            <p class="card-text">{{ first.episode_text | safe}}</p>
+                            
+                            
+                    </div>
+                </div>
+            </div> 
+            <script>
+                function hide(){
+                    document.getElementById('lesson-summary').style.display = 'none';
+                }
+            </script>
+        </div>
+       
+
+        <!-- Serie sections and episode selector sidebar starts-->
+        <div class="col-lg-3 mt-5 order-md-2 serie_col hidden" id="episode_list_loader" style="text-align: center;">
+            <img src="{%  static 'assets/backend/images/loader.gif' %}" alt="" height="50" width="50">
+        </div>
+        <div class="col-lg-3  order-md-2 serie_col" id = "episode_list_area">
+            <div class="text-center" style="margin: 12px 10px;">
+                <h5>Dizi İçeriği</h5>
+            </div>
+            <div class="row" style="margin: 12px -1px">
+                <div class="col-12">
+                    <ul class="nav nav-tabs" id="episodeTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="section_and_episodes-tab" data-toggle="tab" href="#section_and_episodes" role="tab" aria-controls="section_and_episodes" aria-selected="true">Bölümler</a>
+                        </li>
+                        
+                        
+                    </ul>
+                    <div class="tab-content" id="episodeTabContent">
+                        <div class="tab-pane fade show active" id="section_and_episodes" role="tabpanel" aria-labelledby="section_and_episodes-tab">
+                            <!-- Episode Content starts from here -->
+                            {% for parent in serie.parent_episode.all %}
+                            <div class="accordion" id="accordionExample">
+                                    <div class="card" style="margin:0px 0px;">
+                                        <div class="card-header serie_card" id="heading-1">
+
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link w-100 text-left" type="button" data-toggle="collapse" data-target="#collapse-{{parent.id}}" aria-expanded="false"  aria-controls="collapse-1" style="color: #535a66; background: none; border: none; white-space: normal;" onclick = "toggleAccordionIcon(this, '1')">
+                                                    <h6 style="color: #959aa2; font-size: 13px;">
+                                                        Bölüm {{parent.sequence}}
+                                                        <span style="float: right; font-weight: 100;" class="accordion_icon" id="accordion_icon_<?php echo $section['id']; ?>">
+                                                   
+                                                   
+                                                        <i class="fa fa-plus"></i>
+                                                   
+                                                </span>
+                                                    </h6>
+                                                   {{parent.title}}
+                                                </button>
+                                            </h5>
+                                        </div>
+
+                                        <div id="collapse-{{parent.id}}" class="collapse show" aria-labelledby="heading-1" data-parent="#accordionExample">
+                                            <div class="card-body"  style="padding:0px;">
+                                                <table style="width: 100%;">
+                                                   
+                                                    {% for episode in parent.episodes.all %}
+                                                      
+                                                    <tr style="width: 100%; padding: 5px 0px;background-color: {% if episode.id == episode_id %} #E6F2F5;{% else %} white {% endif %}">
+                                                        <a href="{% url 'episodefromclick' serie.slug episode.episode_slug %}">  
+                                                        <td style="text-align: left; padding:7px 10px;">
+                                                                
+
+                                                                <a href="{% url 'episodefromclick' serie.slug episode.episode_slug %}" id = "1" style="color: #444549;font-size: 14px;font-weight: 400;">
+                                                                    {{episode.episode_title}}
+                                                                </a>
+
+                                                                <div class="episode_duration" style="display: flex;">
+                                                                    {% if episode.episode_type == 'video' %}
+                                                                        <i class="far fa-play-circle"></i><p style="margin-left:5px; margin-top:-4px; float: right;">{% if episode.episode_duration %}{{episode.episode_duration}}{%endif%}</p>
+                                                                    {% endif %}
+                                                                    
+                                                                </div>
+                                                       
+                                                            </td>
+                                                        </a>
+                                                        </tr>
+                                                    
+                                                    {% endfor%}
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <!-- Episode Content ends from here -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Serie sections and episode selector sidebar ends-->
+    </div>
+    </div>
+
+    <script src="{% static 'assets/frontend/default/js/vendor/modernizr-3.5.0.min.js' %} "></script>
+    <script src="{% static 'assets/frontend/default/js/vendor/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'assets/frontend/default/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/frontend/default/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/frontend/default/js/slick.min.js' %}"></script>
+    <script src="{% static 'assets/frontend/default/js/select2.min.js' %}"></script>
+    <script src="{% static 'assets/frontend/default/js/tinymce.min.js' %} "></script>
+    <script src="{% static 'assets/frontend/default/js/multi-step-modal.js' %} "></script>
+    <script src="{% static 'assets/frontend/default/js/jquery.webui-popover.min.js' %} "></script>
+    <script src="https://content.jwplatform.com/libraries/O7BMTay5.js"></script>
+    <script src="{% static 'assets/frontend/default/js/main.js' %} "></script>
+    <script src="{% static 'assets/global/toastr/toastr.min.js' %} "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nestable2/1.6.0/jquery.nestable.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
+    <script src="{% static 'assets/frontend/default/js/bootstrap-tagsinput.min.js' %} "></script>
+    <script src="{% static 'assets/frontend/default/js/custom.js' %} "></script>
+    <script src="{% static 'assets/episodes/js/custom.js' %} "></script>
+    <script>
+        function toggle_episode_view() {
+            $('#episode-container').toggleClass('justify-content-center');
+            $("#video_player_area").toggleClass("order-md-1");
+            $("#episode_list_area").toggleClass("col-lg-5 order-md-1");
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<nav class="vertical_nav">
+    <div class="left_section menu_left" id="js-menu" >
+        <div class="left_section">
+            <ul>
+                <li class="menu--item">
+                    <a href="{% url 'dashboard' %}" class="menu--link active" title="Dashboard">
+                        <i class="uil uil-apps menu--icon"></i>
+                        <span class="menu--label">iSeries Dizi Paneli</span>
+                    </a>
+                </li>
+                <li class="menu--item">
+                    <a href="{% url 'myseries' %}" class="menu--link" title="Series">
+                        <i class='uil uil-book-alt menu--icon'></i>
+                        <span class="menu--label">Dizilerim</span>
+                    </a>
+                </li>
+                
+               
+            </ul>
+        </div>
+        <div class="left_section pt-2">
+            <ul>
+                
+                <li class="menu--item">
+                    <a href="{% url 'sendreport' %}" class="menu--link" title="Send Feedback">
+                        <i class='uil uil-comment-alt-exclamation menu--icon'></i>
+                        <span class="menu--label">Şikayet Bildir</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, shrink-to-fit=9">
+		<meta name="description" content="th3d1gger">
+		<meta name="author" content="th3d1gger">		
+		<title>iSeries  | {% block title %}
+      
+            {% endblock %}</title>
+        
+		
+		<!-- Favicon Icon -->
+		<link rel="icon" type="image/png" href="{% static 'dashboard/images/fav.png">
+		
+		<!-- Stylesheets -->
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,500' rel='stylesheet'>
+		<link href="{% static 'dashboard/vendor/unicons-2.0.1/css/unicons.css'%}" rel='stylesheet'>
+		<link href="{% static 'dashboard/css/vertical-responsive-menu1.min.css'%}" rel="stylesheet">
+		{% if 'report' in request.path %}
+		<link href="{% static 'dashboard/css/vertical-responsive-menu.min.css' %}" rel="stylesheet">
+		<link href="{% static 'dashboard/css/style.css' %}" rel="stylesheet">
+		<link href="{% static 'dashboard/css/responsive.css' %}" rel="stylesheet">
+	
+	
+		{%elif 'profile' in request.path %}
+		<link href="{% static 'dashboard/css/vertical-responsive-menu.min.css' %}" rel="stylesheet">
+		<link href="{% static 'dashboard/css/style.css' %}" rel="stylesheet">
+		<link href="{% static 'dashboard/css/responsive.css' %}" rel="stylesheet">
+		{% elif 'chat' in request.path%}
+		<link href="{% static 'dashboard/css/watcher_dashboard.css' %}" rel="stylesheet">
+		<link href="{% static 'dashboard/css/watcher_responsive.css' %}" rel="stylesheet">
+		<link href="{% static 'dashboard/css/night-mode.css' %}" rel="stylesheet">
+		<link href="{% static 'dashboard/css/jquery.mCustomScrollbar.min.css' %}" rel="stylesheet">
+
+		{% else %}
+		<link href="{% static 'dashboard/css/watcher_dashboard.css'%}" rel="stylesheet">
+		<link href="{% static 'dashboard/css/watcher_responsive.css'%}" rel="stylesheet">
+	
+		{% endif %}
+		<link href="{% static 'dashboard/css/night-mode.css'%}" rel="stylesheet">
+		
+		<!-- Vendor Stylesheets -->
+		<link href="{% static 'dashboard/vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet">
+		<link href="{% static 'dashboard/vendor/OwlCarousel/assets/owl.carousel.css'%}" rel="stylesheet">
+		<link href="{% static 'dashboard/vendor/OwlCarousel/assets/owl.theme.default.min.css'%}" rel="stylesheet">
+		<link href="{% static 'dashboard/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{% static 'dashboard/vendor/semantic/semantic.min.css'%}">		
+		<script src="{% static 'dashboard/js/jquery-3.3.1.min.js'%}"></script>	
+		<style>
+			.night-mode #logo img {
+			display: block!important;
+			width: 100px;
+		}
+		h1 { font-family: "Homemade Apple"; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; } h3 { font-family: "Homemade Apple"; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; } p { font-family: "Homemade Apple"; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } blockquote { font-family: "Homemade Apple"; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } pre { font-family: "Homemade Apple"; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5714px; }
+		  </style>
+		  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Homemade+Apple" />
+		  <style>
+	
+		  @media only screen and (max-width: 600px) {
+    .thumb {
+          height: auto !important;
+      }
+      .content {
+        height: auto !important;
+      } 
+      .cls{
+
+position: absolute;
+left: 0%;
+text-align:center;
+
+}
+}
+    .cls{
+
+    position: absolute;
+    left: 35%;
+    text-align:center;
+
+    }
+	</style>
+	</head>
+
+<body>
+	<!-- Header Start -->
+	{% include 'dashboard/watcher/partials/_topbar.html'%}
+	<!-- Header End -->
+	<!-- Left Sidebar Start -->
+	{% include 'dashboard/watcher/partials/_navbar.html'%}
+	<!-- Left Sidebar End -->
+	<!-- Body Start -->
+	{% block content%}
+	{% endblock %}
+	
+	<!-- Body End -->
+
+	<script src="{% static 'dashboard/js/vertical-responsive-menu.min.js'%}"></script>
+	
+	<script src="{% static 'dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+	<script src="{% static 'dashboard/vendor/OwlCarousel/owl.carousel.js'%}"></script>
+	<script src="{% static 'dashboard/vendor/semantic/semantic.min.js'%}"></script>
+	<script src="{% static 'dashboard/js/custom1.js'%}"></script>
+	<script src="{% static 'dashboard/js/night-mode.js'%}"></script>
+	
+	<script>
+	 if ($(window).width() < 960) {
+    
+    $('#nvsbl').css('display','none');  }
+  else {
+   
+  }
+	  </script>
+</body>
+</html>

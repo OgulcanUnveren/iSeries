@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{about.title}}
+{% endblock %}
+{% block content %}
+<div class="main-content">
+    <!-- Section: inner-header -->
+    <section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="{% static 'images/breadcrumb.png'%}">
+      <div class="container pt-70 pb-20">
+        <!-- Section Content -->
+        <div class="section-content">
+          <div class="row">
+            <div class="col-md-12">
+              <h2 class="title text-white">{{about.title}}</h2>
+              <ol class="breadcrumb text-left text-black mt-10">
+                <li ><a class="text-gray-silver" href="{% url 'index' %}">Anasayfa</a></li>
+                
+                <li  class="active text-gray-silver"><span style="color: wheat;">{{about.title}} </span></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+    <!-- Divider: Contact -->
+    <section class="divider bg-lighter">
+        <div class="container pt-60 pb-60">
+          <div class="section-title mb-60">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="esc-heading small-border text-center">
+                  <h3>{{about.title}}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="section-content">
+            <div class="row">
+                {{ about.content | safe}}
+          </div>
+        </div>
+      </section>
+   
+
+    
+    <!-- Divider: Google Map -->
+   
+  </div>
+  <!-- end main-content -->
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% load static %}
+<footer class="footer mt-30">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-6">
+        <div class="item_f1">
+          {% if footerpages %}
+
+          {% for page in footerpages %}
+          <a href="{% url 'pages' page.slug %}">{{page.title}}</a>
+          {% endfor %}
+          {% endif%}
+        </div>
+      </div>
+      
+     
+      <div class="col-lg-12">
+        <div class="footer_bottm">
+          <div class="row">
+            <div class="col-md-6">
+              
+                
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <div class="edu_social_links">
+                <ul>
+                <li>
+                  <h5>© 2020 <strong>The iSeries</strong>. Tüm Hakları Saklıdır.</h5>
+                </li>
+              </ul>
+              </div>
+            </div>		
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Kurslar
+{% endblock %}
+{% block stilist%}
+<script>
+  $( document ).ready(function() {
+    $('.content').matchHeight();
+    $('.thumb').matchHeight();
+  });
+</script>
+<style>
+  .rater {
+    left: 5px;
+    padding: 5px 10px;
+    position: absolute;
+    top: 7px;
+  }
+</style>
+
+{% endblock %}
+{% block content %}
+
+
+<div class="sa4d25 mb4d25 mt-50">
+  <div class="container">			
+    <div class="row justify-content-between">
+      <div class="col-lg-3 col-md-4 mt-50">
+        <div class="section3125 hstry142">
+          
+          <div class="tb_145">
+          <h6>Kategoriler</h6>  
+            <div class="panel-group accordion" id="accordionfilter">
+              {% for c in cate|slice:":{{toplamcat}}" %}
+              <div class="panel panel-default">
+                <div class="panel-heading" id="headingOne">
+                  <div class="panel-title10">
+                    <a class="collapsed" data-toggle="collapse" data-target="#collapseOne" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                      {{ c | safe}}
+                    </a>
+                  </div>
+                </div>
+               
+              </div>
+                         
+      
+                          {% endfor%}
+              								
+            </div>				
+          </div>						
+        </div>							
+      </div>					
+      <div class="col-lg-9 col-md-8 mt-50">
+        <div class="_14d25 mb-20">						
+          <div class="row">
+            <div class="col-md-12">
+              {% if maincat %}
+              <h4 class="mhs_title">{{maincat.title}} Kategorisi için  Sonuçlar({{seriescount}})</h4>
+              {% endif %}
+              {% if searchparam%}
+              <h4 class="mhs_title">{{searchparam}} Araması için  Sonuçlar({{seriescount}})</h4>
+              {% else %}
+              
+              {% endif %}
+              {% if seriescount > 0%}
+              {% for serie in series%}
+              <a href="{% url 'seriedetail' serie.slug %}" class="crse14s title900">
+              <div class="fcrse_1 mt-30" id="knks">
+                <a href="{% url 'seriedetail' serie.slug %}" class="hf_img">
+                  <img width="200px;" src="{{serie.serie_image.url}}" alt="">
+                  
+                </a>
+                <div class="hs_content mt-10">
+                  
+                  <a href="{% url 'seriedetail' serie.slug %}" class="crse14s title900">{{ serie.title}}</a>
+                  {% if serie.serie_category %}
+                    {% for cat in  serie.serie_category.all %}
+                   
+                  <a href="/series/category/{{cat.id}}" class="crse-cate">
+                    || {{ cat.title}} ||</a><br>
+                    {% endfor %}
+                    {% endif %}
+                  <div class="auth1lnkprce">
+                    {{ serie.description |truncatewords:199}}
+                  </div>
+                </div>
+              </div>
+            </a>
+           
+             {% endfor %}
+             {% else %}
+             <h5>Bu aramada hiç sonuç bulunamadı</h5>
+             {% endif%}
+             
+             
+            </div>									
+          </div>																		
+        </div>							
+      </div>				
+    </div>
+  </div>
+</div>
+<script>
+  if ($(window).width() < 960) {
+  document.getElementById('knks').style.display = 'block!important';
+}
+else {
+  $('#knks').attr('style','display:flex!important;')
+}
+</script>
+{% endblock %}

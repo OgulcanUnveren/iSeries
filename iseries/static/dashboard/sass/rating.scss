@@ -1,0 +1,65 @@
+@import "css/style";
+
+$star-color: #f2b01e;
+$star-default-color: #f0f0f0;
+$background-color: #2a2a2a;
+
+body {
+  background: $background-color;
+  padding: 3rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.rating-box {
+  color: $star-default-color;
+  text-shadow: 0px 1px 10px rgba(0, 0, 0, 1);
+  margin: 3rem auto;
+  height: 3rem;
+  width: 25rem;
+}
+
+.rating-star{
+  font-size: 3rem;
+  width: 3rem;
+  height: 3rem;
+  padding: 0 2rem;
+  position: relative;
+  display: block;
+  float:left;
+}
+
+.full-star:before {
+  color: $star-color;
+  content: "\2605";
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+}
+
+.empty-star:before {
+  content: "\2605";
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+}
+
+.half-star:before {
+  color: $star-color;
+  content: "\2605";
+  width: 50%;
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+}
+
+.half-star:after {
+  content: '\2605';
+  position: absolute;
+  left: 1.5rem;
+  width: 50%;
+  text-indent: -1.5rem;
+  overflow: hidden;
+}

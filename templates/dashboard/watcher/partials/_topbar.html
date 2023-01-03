@@ -1,0 +1,90 @@
+
+{% load static %}
+
+<header class="header clearfix">
+    <audio id="monsty"></audio>
+    {% if user.is_authenticated%}
+    {% if 'dashboard' in request.path %}
+    <button type="button" id="toggleMenu" class="toggle_menu">
+      <i class='uil uil-bars'></i>
+    </button>
+    
+    <button id="collapse_menu" class="collapse_menu">
+        <i class="uil uil-bars collapse_menu--icon "></i>
+        <span class="collapse_menu--label"></span>
+    </button>
+    {% endif%}
+    {% else%}
+    {% endif %}
+    <div class="main_logo" id="logo">
+        <a href="{% url 'index' %}"><img style="width: 100px;display: block !important;" src="{% if topconfs.logo_normal %}{{ topconfs.logo_normal.url}}{% endif%}" alt=""></a>
+        
+    </div>
+    <div class="cls" id="cls">
+        <a href="{% url 'index' %}"> <h3 id="nvsbl">Die Meister , Die Besten , Les grandes équipes  </h3>The  i S e r i e s</a></div>
+       <div class="header_right">
+        <ul>
+           
+            {% if user.is_authenticated %}
+            <li class="ui dropdown">
+                <a href="#" class="opts_account">
+                    <img src="{% static 'dashboard/images/rumbadebarcelona.jpg'%}" alt="">
+                </a>
+                <div class="menu dropdown_account">
+                    <div class="channel_my">
+                        <div class="profile_link">
+                            <img src="{% static 'dashboard/images/rumbadebarcelona.jpg'%}" alt="">
+                            <div class="pd_content">
+                               
+                                <span>{{user.email}}</span>
+                            </div>							
+                        </div>
+                       
+                    </div>
+                    <div class="night_mode_switch__btn">
+                        <a href="#" id="night-mode" class="btn-night-mode">
+                            <i class="uil uil-moon"></i> Gece Modu
+                            <span class="btn-night-mode-switch">
+                                <span class="uk-switch-button"></span>
+                            </span>
+                        </a>
+                    </div>
+                    <a href="{% url 'dashboard' %}" class="item channel_item">Dizi Yönetim Paneli</a>						
+                    
+                    <a href="{% url 'logout' %}" class="item channel_item">Çıkış Yap</a>
+                </div>
+            </li>
+            {%else%}
+            <li class="ui dropdown">
+                <a href="#" class="opts_account">
+                    <img src="{% static 'dashboard/images/rumbadebarcelona.jpg'%}" alt="">
+                </a>
+                <div class="menu dropdown_account">
+                    <div class="channel_my">
+                        <div class="profile_link">
+                            
+                            <div class="pd_content">
+                                <div class="rhte85">
+                                    <h6>Misafir Modundasınız. İçerikler için lütfen üye olun!</h6>
+                                </div>
+                                
+                            </div>							
+                        </div>
+                       
+                    </div>
+                    <a href="{% url 'login' %}" class="item channel_item"><h6>Giriş Yap</h6></a>
+                    <div class="night_mode_switch__btn">
+                        <a href="#" id="night-mode" class="btn-night-mode">
+                            <i class="uil uil-moon"></i> Gece Modu
+                            <span class="btn-night-mode-switch">
+                                <span class="uk-switch-button"></span>
+                            </span>
+                        </a>
+                    </div>
+                    
+                </div>
+            </li>
+            {%endif%}
+        </ul>
+    </div>
+</header>

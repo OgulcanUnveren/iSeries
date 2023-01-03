@@ -1,0 +1,46 @@
+{% load static %}
+
+<section>
+<div style="back" class="rev_slider_wrapper">
+    <div class="rev_slider" data-version="5.0">
+      <img src="{% static 'images/slidesearchdark.jpg' %}" width=100%  alt=""  data-bgposition="center 10%" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg" data-bgparallax="10" data-no-retina>
+
+     
+
+      <div  class="contento" onclick="searchofocus();">
+    <div class="searcho" >
+         <form id="xyz" style="margin-bottom: 0px;" class="xyz" method="POST" action="{% url 'seriesearch' %}">
+      {% csrf_token%}
+        <input id="seeker" style="text-align: center;" type="text" class="search__input" aria-label="search" name="keywords" placeholder="Dizi Ara" required>
+      <button onclick="checkifempty();" class="search__btn" aria-label="submit search"><i class="fa fa-search"></i></button>
+   
+   
+      
+    </div>
+  </form>
+    </div>
+  
+   <script>
+
+    function searchofocus(){
+      document.getElementById("seeker").focus();
+    }
+function checkifempty(){
+    ifempt = document.getElementById('seeker').value;
+    if(ifempt != ''){
+      
+      
+      document.getElementById('xyz').submit();
+    }
+    
+}
+   </script>
+
+    </div>
+    <!-- end .rev_slider -->
+  </div>
+  <!-- end .rev_slider_wrapper -->
+
+  
+
+</section>

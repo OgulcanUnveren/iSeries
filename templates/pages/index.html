@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+{% load l10n %}
+{% load custom_tags %}
+{% load humanize %}
+{% block title %}
+Anasayfa
+{% endblock %}
+{% block stilist%}
+<style>
+.wrapper {
+  margin-left:0px!important;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div class="wrapper">
+  <div class="sa4d25">
+    <div class="container-fluid">			
+      <div class="row">
+        {% include 'partials/_slider.html' %}  
+        <div class="col-md-12 contentomain  ">
+          <div class="section3125 mb-15 mt-50">
+            <h4 class="item_title">Son Yayınlananlar</h4>
+            
+            
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="_14d25">
+            <div class="row">
+              {% if series%}
+              {% for serie in series%}
+              <div class="col-lg-2 col-md-3">
+                <div class="fcrse_1 mt-30">
+                  <a href="{% url 'seriedetail' serie.id|getserieslug %}" class="fcrse_img">
+                    
+                    
+                    
+                    <img src="{{serie.id|getserieimage}}" alt="">
+                    
+                    
+                  </a>
+                  <div class="fcrse_content">
+                  
+                      {{ serie.id|getname}}
+                    <a href="{% url 'seriedetail'  serie.id|getserieslug %}" class="crse14s">
+                    </a>
+                    <!-- <a href="#" class="crse-cate">{% if serie.serie_category%}</a>
+                      {% for category in serie.serie_category.all %}
+                      | {{ category.title}} | 
+                      {% endfor%}
+                    {% endif%} -->
+                  </div>
+                </div>													
+              </div>
+              {%endfor%}
+              {% endif %}    
+                        
+              <div class="col-md-12">
+                <div class="main-loader sendload mt-50">			
+                  <div class="col-md-4"></div>										
+                  <div class="col-md-4">
+
+                    
+                    
+                      <div style="text-align: center;" class="col-sm-12">
+                        <nav>
+                          {% if series.has_other_pages %}
+                          <ul class="pagination theme-colored xs-pull-center m-0">
+                            {% if series.has_previous %}
+                            <li class="page-item">
+                              <a class="page-link" href="?page={{series.previous_page_number}}">&laquo;</a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                              <a class="page-link" href="#">&laquo;</a>
+                            </li>
+                            {% endif %}
+                        
+                            {% for i in series.paginator.page_range %}
+                            {% if i == series.number %}
+                            
+                          <li class="page-item 
+                          active
+                          ">
+                            <a class="page-link" href="?page={{i }}">{{i}}</a>
+                          </li>
+                          <li class="page-item 
+                             
+                          ">
+                            <a class="page-link" href="?page={{i|add:1 }}">{{i|add:1 }}</a>
+                          </li>
+                          <li class="page-item 
+                          
+                        ">
+                          <a class="page-link" href="?page={{i|add:1 }}">{{i|add:2 }}</a>
+                        </li>
+                        <li class="page-item 
+                             
+                          ">
+                            <a class="page-link" href="?page={{i|add:3 }}">{{i|add:3 }}</a>
+                          </li>
+                          {% else %}
+                            
+                            {% endif%}
+                            
+                              
+                            {% endfor %}
+                              {% if series.has_next %}
+                              <li class="page-item">
+                                <a class="page-link" href="?page={{series.next_page_number}}">&raquo;</a>
+                             
+                              </li>
+                              <li>
+                              <a class="page-link" href="?page={{series.paginator.num_pages}}">Son &raquo;</a>
+                            </li>
+                              {% else %}
+                              <li>
+                                <a class="page-link" href="#">&raquo;</a>
+                              </li>
+                            {% endif %}
+                            
+                            
+                           
+                          </ul>
+                          {% endif%}
+                         
+                        </nav>
+                      </div>
+                   
+                  </div>						
+                  <div class="col-md-4"></div>										
+                </div>
+              </div>
+              
+            </div>				
+          </div>				
+        </div>				
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

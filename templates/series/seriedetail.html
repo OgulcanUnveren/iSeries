@@ -1,0 +1,528 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{serie.title}}
+{% endblock %}
+{% block stilist %}
+<style>
+.header {
+	position: absolute;
+    top: 0%;
+}
+#full-stars-example {
+}
+#full-stars-example .rating-group {
+  display: inline-flex;
+}
+#full-stars-example .rating__icon {
+  pointer-events: none;
+}
+#full-stars-example .rating__input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+#full-stars-example .rating__label {
+  cursor: pointer;
+  padding: 0 0.1em;
+  font-size: 2rem;
+}
+#full-stars-example .rating__icon--star {
+  color: orange;
+}
+#full-stars-example .rating__icon--none {
+  color: #eee;
+}
+#full-stars-example .rating__input--none:checked + .rating__label .rating__icon--none {
+  color: red;
+}
+#full-stars-example .rating__input:checked ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+#full-stars-example .rating-group:hover .rating__label .rating__icon--star {
+  color: orange;
+}
+#full-stars-example .rating__input:hover ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+#full-stars-example .rating-group:hover .rating__input--none:not(:hover) + .rating__label .rating__icon--none {
+  color: #eee;
+}
+#full-stars-example .rating__input--none:hover + .rating__label .rating__icon--none {
+  color: red;
+}
+
+#half-stars-example {
+}
+#half-stars-example .rating-group {
+  display: inline-flex;
+}
+#half-stars-example .rating__icon {
+  pointer-events: none;
+}
+#half-stars-example .rating__input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+#half-stars-example .rating__label {
+  cursor: pointer;
+  /* if you change the left/right padding, update the margin-right property of .rating__label--half as well. */
+  padding: 0 0.1em;
+  font-size: 2rem;
+}
+#half-stars-example .rating__label--half {
+  padding-right: 0;
+  margin-right: -0.6em;
+  z-index: 2;
+}
+#half-stars-example .rating__icon--star {
+  color: orange;
+}
+#half-stars-example .rating__icon--none {
+  color: #eee;
+}
+#half-stars-example .rating__input--none:checked + .rating__label .rating__icon--none {
+  color: red;
+}
+#half-stars-example .rating__input:checked ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+#half-stars-example .rating-group:hover .rating__label .rating__icon--star,
+#half-stars-example .rating-group:hover .rating__label--half .rating__icon--star {
+  color: orange;
+}
+#half-stars-example .rating__input:hover ~ .rating__label .rating__icon--star,
+#half-stars-example .rating__input:hover ~ .rating__label--half .rating__icon--star {
+  color: #ddd;
+}
+#half-stars-example .rating-group:hover .rating__input--none:not(:hover) + .rating__label .rating__icon--none {
+  color: #eee;
+}
+#half-stars-example .rating__input--none:hover + .rating__label .rating__icon--none {
+  color: red;
+}
+
+#full-stars-example-two {
+}
+#full-stars-example-two .rating-group {
+  display: inline-flex;
+}
+#full-stars-example-two .rating__icon {
+  pointer-events: none;
+}
+#full-stars-example-two .rating__input {
+  position: absolute !important;
+  left: -9999px !important;
+}
+#full-stars-example-two .rating__input--none {
+  display: none;
+}
+#full-stars-example-two .rating__label {
+  cursor: pointer;
+  padding: 0 0.1em;
+  font-size: 2rem;
+}
+#full-stars-example-two .rating__icon--star {
+  color: orange;
+}
+#full-stars-example-two .rating__input:checked ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+#full-stars-example-two .rating-group:hover .rating__label .rating__icon--star {
+  color: orange;
+}
+#full-stars-example-two .rating__input:hover ~ .rating__label .rating__icon--star {
+  color: #ddd;
+}
+</STYLE>
+<script>
+  $( document ).ready(function() {
+    setTimeout(function () {
+      $('#message').fadeOut('slow');
+  }, 5000)
+});
+ 
+</script>
+{% endblock %}
+{% block content %}
+
+  <div class="col-md-12 mt-50">
+		<div class="_215b01">
+			<div class="container-fluid">			
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="section3125">							
+							<div class="row justify-content-center">						
+								<div class="col-xl-2 col-lg-3 col-md-4">						
+									<div class="preview_video">						
+										<a href="#" class="fcrse_img" data-toggle="modal" data-target="#videoModal">
+											<img src="{% if serie.serie_image%}{{serie.serie_image.url}}{%endif%}" alt="">
+										
+										</a>
+									</div>
+									
+								</div>
+								<div class="col-xl-8 col-lg-7 col-md-6">
+									<div class="_215b03">
+										<h2>{%if serie.title%} {{serie.title}}{%endif%}</h2>
+										<span class="_215b04">{%if serie.description%} {{serie.description}}{%endif%}</span>
+									</div>
+									
+									
+									<ul class="_215b31">										
+										<li><button class="btn_adcart">
+											
+											{% if user.is_authenticated%}
+												{% if purchased %}
+												{%else%}		
+											<a href="{% url 'addtowatchers' serie.slug %}">Bu Diziye kaydol</a></button></li>
+											{% endif%}
+									{% else %}
+									<a href="{% url 'addtowatchers' serie.slug %}">Bu Diziye kaydol</a></button></li>
+									{% endif %}
+									</ul>
+								</div>							
+							</div>							
+						</div>							
+					</div>															
+				</div>
+			</div>
+		</div>
+		<div class="_215b15 _byt1458">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+            
+						<div class="serie_tabs">
+							<nav>
+								<div class="nav nav-tabs tab_crse justify-content-center" id="nav-tab" role="tablist">
+								
+									<a class="nav-item nav-link" id="nav-series-tab" data-toggle="tab" href="#nav-series" role="tab" aria-selected="false">Sezonlar</a>
+									<a class="nav-item nav-link" id="nav-reviews-tab" data-toggle="tab" href="#nav-reviews" role="tab" aria-selected="false">Yorumlar</a>
+								</div>
+							</nav>						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="_215b17">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="serie_tab_content">
+							<div class="tab-content" id="nav-tabContent">
+								
+								<div class="tab-pane fade show active" id="nav-series" role="tabpanel">
+									<div class="crse_content">
+										<h3>Dizi İçeriği</h3>
+										<div class="_112456">
+											<ul class="accordion-expand-holder">
+												<li><span class="accordion-expand-all _d1452">Tümünü Genişlet</span></li>
+												
+											</ul>
+										</div>
+										<div id="accordion" class="ui-accordion ui-widget ui-helper-reset">
+											{% if serie.parent_episode %}
+											{% for sezon in serie.parent_episode.all %}
+											
+											<a href="javascript:void(0)" class="accordion-header ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all">												
+												<div class="section-header-left">
+													<span class="section-title-wrapper">
+														<i class='uil uil-presentation-play crse_icon'></i>
+														<span class="section-title-text">{{sezon.title}}</span>
+													</span>
+												</div>
+												
+											</a>
+											
+											<div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom">
+												{% for bolum in sezon.episodes.all %}
+												<div class="lecture-container">
+													<div class="left-content">
+														<i class='uil uil-file icon_142'></i>
+														<div class="top">
+															<div class="title"><a href="{% url 'episodefromclick' serie.slug bolum.episode_slug %}">{{bolum.episode_title}}</a></div>
+														</div>
+													</div>
+												</div>
+												{% endfor %}
+											</div>
+											
+											{% endfor%}
+											{% endif %}
+																					
+										</div>
+										<a class="btn1458" href="#">20 More Sections</a>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="nav-reviews" role="tabpanel">
+									<div class="watcher_reviews">
+										<div class="row">
+											<div class="col-lg-5">
+												<div class="reviews_left">
+													<h3>watcher Feedback</h3>
+													<div class="total_rating">
+														<div class="_rate001">4.6</div>														
+														<div class="rating-box">
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star half-star"></span>
+														</div>
+														<div class="_rate002">serie Rating</div>	
+													</div>
+													<div class="_rate003">
+														<div class="_rate004">
+															<div class="progress progress1">
+																<div class="progress-bar w-70" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+															</div>
+															<div class="rating-box">
+																<span class="rating-star full-star"></span>
+																<span class="rating-star full-star"></span>
+																<span class="rating-star full-star"></span>
+																<span class="rating-star full-star"></span>
+																<span class="rating-star full-star"></span>
+															</div>
+															<div class="_rate002">70%</div>
+														</div>
+														<div class="_rate004">
+															<div class="progress progress1">
+																<div class="progress-bar w-30" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+															</div>
+															<div class="rating-box">
+																<span class="rating-star full-star"></span>
+																<span class="rating-star full-star"></span>
+																<span class="rating-star full-star"></span>
+																<span class="rating-star full-star"></span>
+																<span class="rating-star empty-star"></span>
+															</div>
+															<div class="_rate002">40%</div>
+														</div>
+														<div class="_rate004">
+															<div class="progress progress1">
+																<div class="progress-bar w-5" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+															</div>
+															<div class="rating-box">
+																<span class="rating-star full-star"></span>
+																<span class="rating-star full-star"></span>
+																<span class="rating-star full-star"></span>
+																<span class="rating-star empty-star"></span>
+																<span class="rating-star empty-star"></span>
+															</div>
+															<div class="_rate002">5%</div>
+														</div>
+														<div class="_rate004">
+															<div class="progress progress1">
+																<div class="progress-bar w-2" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100"></div>
+															</div>
+															<div class="rating-box">
+																<span class="rating-star full-star"></span>
+																<span class="rating-star full-star"></span>
+																<span class="rating-star empty-star"></span>
+																<span class="rating-star empty-star"></span>
+																<span class="rating-star empty-star"></span>
+															</div>
+															<div class="_rate002">1%</div>
+														</div>
+														<div class="_rate004">
+															<div class="progress progress1">
+																<div class="progress-bar w-1" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+															</div>
+															<div class="rating-box">
+																<span class="rating-star full-star"></span>
+																<span class="rating-star empty-star"></span>
+																<span class="rating-star empty-star"></span>
+																<span class="rating-star empty-star"></span>
+																<span class="rating-star empty-star"></span>
+															</div>
+															<div class="_rate002">1%</div>
+														</div>
+													</div>
+												</div>												
+											</div>
+											<div class="col-lg-7">
+												<div class="review_right">
+													<div class="review_right_heading">
+														<h3>Reviews</h3>
+														<div class="review_search">
+															<input class="rv_srch" type="text" placeholder="Search reviews...">
+															<button class="rvsrch_btn"><i class='uil uil-search'></i></button>
+														</div>
+													</div>
+												</div>
+												<div class="review_all120">
+													<div class="review_item">
+														<div class="review_usr_dt">
+															<img src="images/left-imgs/img-1.jpg" alt="">
+															<div class="rv1458">
+																<h4 class="tutor_name1">John Doe</h4>
+																<span class="time_145">2 hour ago</span>
+															</div>
+														</div>
+														<div class="rating-box mt-20">
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star half-star"></span>
+														</div>
+														<p class="rvds10">Nam gravida elit a velit rutrum, eget dapibus ex elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce lacinia, nunc sit amet tincidunt venenatis.</p>
+														<div class="rpt100">
+															<span>Was this review helpful?</span>
+															<div class="radio--group-inline-container">
+																<div class="radio-item">
+																	<input id="radio-1" name="radio" type="radio">
+																	<label for="radio-1" class="radio-label">Yes</label>
+																</div>
+																<div class="radio-item">
+																	<input id="radio-2" name="radio" type="radio">
+																	<label  for="radio-2" class="radio-label">No</label>
+																</div>
+															</div>
+															<a href="#" class="report145">Report</a>
+														</div>
+													</div>
+													<div class="review_item">
+														<div class="review_usr_dt">
+															<img src="images/left-imgs/img-2.jpg" alt="">
+															<div class="rv1458">
+																<h4 class="tutor_name1">Jassica William</h4>
+																<span class="time_145">12 hour ago</span>
+															</div>
+														</div>
+														<div class="rating-box mt-20">
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star empty-star"></span>
+														</div>
+														<p class="rvds10">Nam gravida elit a velit rutrum, eget dapibus ex elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce lacinia, nunc sit amet tincidunt venenatis.</p>
+														<div class="rpt100">
+															<span>Was this review helpful?</span>
+															<div class="radio--group-inline-container">
+																<div class="radio-item">
+																	<input id="radio-3" name="radio1" type="radio">
+																	<label for="radio-3" class="radio-label">Yes</label>
+																</div>
+																<div class="radio-item">
+																	<input id="radio-4" name="radio1" type="radio">
+																	<label  for="radio-4" class="radio-label">No</label>
+																</div>
+															</div>
+															<a href="#" class="report145">Report</a>
+														</div>
+													</div>
+													<div class="review_item">
+														<div class="review_usr_dt">
+															<img src="images/left-imgs/img-3.jpg" alt="">
+															<div class="rv1458">
+																<h4 class="tutor_name1">Albert Dua</h4>
+																<span class="time_145">5 days ago</span>
+															</div>
+														</div>
+														<div class="rating-box mt-20">
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star half-star"></span>
+															<span class="rating-star empty-star"></span>
+														</div>
+														<p class="rvds10">Nam gravida elit a velit rutrum, eget dapibus ex elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce lacinia, nunc sit amet tincidunt venenatis.</p>
+														<div class="rpt100">
+															<span>Was this review helpful?</span>
+															<div class="radio--group-inline-container">
+																<div class="radio-item">
+																	<input id="radio-5" name="radio2" type="radio">
+																	<label for="radio-5" class="radio-label">Yes</label>
+																</div>
+																<div class="radio-item">
+																	<input id="radio-6" name="radio2" type="radio">
+																	<label  for="radio-6" class="radio-label">No</label>
+																</div>
+															</div>
+															<a href="#" class="report145">Report</a>
+														</div>
+													</div>
+													<div class="review_item">
+														<div class="review_usr_dt">
+															<img src="images/left-imgs/img-4.jpg" alt="">
+															<div class="rv1458">
+																<h4 class="tutor_name1">Zoena Singh</h4>
+																<span class="time_145">15 days ago</span>
+															</div>
+														</div>
+														<div class="rating-box mt-20">
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+														</div>
+														<p class="rvds10">Nam gravida elit a velit rutrum, eget dapibus ex elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce lacinia, nunc sit amet tincidunt venenatis.</p>
+														<div class="rpt100">
+															<span>Was this review helpful?</span>
+															<div class="radio--group-inline-container">
+																<div class="radio-item">
+																	<input id="radio-7" name="radio3" type="radio">
+																	<label for="radio-7" class="radio-label">Yes</label>
+																</div>
+																<div class="radio-item">
+																	<input id="radio-8" name="radio3" type="radio">
+																	<label  for="radio-8" class="radio-label">No</label>
+																</div>
+															</div>
+															<a href="#" class="report145">Report</a>
+														</div>
+													</div>
+													<div class="review_item">
+														<div class="review_usr_dt">
+															<img src="images/left-imgs/img-5.jpg" alt="">
+															<div class="rv1458">
+																<h4 class="tutor_name1">Joy Dua</h4>
+																<span class="time_145">20 days ago</span>
+															</div>
+														</div>
+														<div class="rating-box mt-20">
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star full-star"></span>
+															<span class="rating-star empty-star"></span>
+															<span class="rating-star empty-star"></span>
+														</div>
+														<p class="rvds10">Nam gravida elit a velit rutrum, eget dapibus ex elementum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Fusce lacinia, nunc sit amet tincidunt venenatis.</p>
+														<div class="rpt100">
+															<span>Was this review helpful?</span>
+															<div class="radio--group-inline-container">
+																<div class="radio-item">
+																	<input id="radio-9" name="radio4" type="radio">
+																	<label for="radio-9" class="radio-label">Yes</label>
+																</div>
+																<div class="radio-item">
+																	<input id="radio-10" name="radio4" type="radio">
+																	<label  for="radio-10" class="radio-label">No</label>
+																</div>
+															</div>
+															<a href="#" class="report145">Report</a>
+														</div>
+													</div>
+													<div class="review_item">
+														<a href="#" class="more_reviews">See More Reviews</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block extrajs %}
+{% endblock %}
