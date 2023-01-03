@@ -243,7 +243,7 @@ def addrating(request):
             return redirect(f'/series/{serie_id}')
         varmi = SerieRating.objects.all().filter(user__id=request.user.id,serie_id=serie_id)
         if varmi:
-            messages.info(request, ' Zaten Kurs Değerlendirilmiş')
+            messages.info(request, ' Zaten Dizi Değerlendirilmiş')
             return redirect(f'/series/{serie_id}')
         else:
             yenioy = SerieRating(user=request.user,rating_value=rating_value,serie_id=serie_id)
@@ -263,7 +263,7 @@ def addrating(request):
             serier.rater = rater
             serier.rateoran = rateoran
             serier.save()
-            messages.info(request, ' Kurs Değerlendirme oyunuz Eklendi')
+            messages.info(request, ' Dizi Değerlendirme oyunuz Eklendi')
             return redirect(f'/series/{serie_id}')
 
 def get_current_serie(titler):
